@@ -9,18 +9,18 @@ url = "https://tomsk.hh.ru/vacancies/programmist"
 
 driver.get(url)
 
-time.sleep(3)
+time.sleep(30)
 
-vacancies = driver.find_elements(By.CLASS_NAME, 'vacancy-card--z_UXteNo-93bRGzxWVcL7y')
+vacancies = driver.find_elements(By.CLASS_NAME, 'vacancy-card--z_UXteNo7bRGzxWVcL7y')
 
 print(vacancies)
 parsed_data = []
 
 for vacancy in vacancies:
     try:
-        title = vacancy.find_element(By.CSS_SELECTOR, 'span.vacancy-name--SYbxrgpHgHedVTkgI_cA').text
-        company = vacancy.find_element(By.CSS_SELECTOR, 'span.company-info-text--O32pGCRW0YDmp3BHuNOP').text
-        salary = vacancy.find_element(By.CSS_SELECTOR, 'span.compensation-text--cCPBXayRjn5GuLFWhGTJ').text
+        title = vacancy.find_element(By.CSS_SELECTOR, 'span.vacancy-name--c1Lay3KouCl7XasYakLk').text
+        company = vacancy.find_element(By.CSS_SELECTOR, 'span.company-info-text--vgvZouLtf8jwBmaD1xgp').text
+        salary = vacancy.find_element(By.CSS_SELECTOR, 'span.compensation-labels--uUto71l5gcnhU2I8TZmz').text
         link = vacancy.find_element(By.CSS_SELECTOR, 'a.bloko-link').get_attribute('href')
 
     except:
@@ -31,7 +31,7 @@ for vacancy in vacancies:
 
 driver.quit()
 
-with open("hh.csv", 'w', newline='', encoding='utf-8') as file:
+with open("tryhh.csv", 'w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
     writer.writerow(['Название вакансии', 'Название компании', 'Заработная плата', 'Ссылка на вакансию'])
     writer.writerows(parsed_data)
